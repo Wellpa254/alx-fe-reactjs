@@ -19,8 +19,13 @@ function App() {
         </a>
       </div>
 
-      {/* ✅ Inserted your component here */}
       <WelcomeMessage />
+
+      <UserProfile 
+        name="Alice" 
+        age="25" 
+        bio="Loves hiking and photography" 
+      />
 
       <h1>Vite + React</h1>
       <div className="card">
