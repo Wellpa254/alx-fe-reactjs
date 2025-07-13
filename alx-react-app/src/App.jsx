@@ -1,3 +1,4 @@
+import UserProfile from './components/UserProfile';
 import WelcomeMessage from './components/WelcomeMessage';
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
