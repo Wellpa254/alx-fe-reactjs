@@ -1,24 +1,49 @@
-import { useRecipeStore } from '../store/useRecipeStore';
-import { useEffect } from 'react';
+import { useRecipeStore } from './recipeStore';
+import { Link } from 'react-router-dom';
 
-const RecommendationsList = () => {
-  const recommendations = useRecipeStore(state => state.recommendations);
-  const generateRecommendations = useRecipeStore(state => state.generateRecommendations);
+const RecipeList = () => {
+  const recipes = useRecipeStore((state) => state.filteredRecipes);
+  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
 
-  useEffect(() => {
-    generateRecommendations();
-  }, [generateRecommendations]);
+  const isFavorite = (id) => favorites.includes(id);
 
   return (
-    <div className="my-6 p-4 border rounded-lg shadow-md bg-white">
-      <h2 className="text-xl font-bold mb-4">Recommended for You</h2>
-      {recommendations.length === 0 ? (
-        <p>No recommendations available.</p>
+    <div>
+      <h2>Recipes</h2>
+      {recipes.length === 0 ? (
+        <p>No recipes yet. Add one above!</p>
       ) : (
-        recommendations.map(recipe => (
-          <div key={recipe.id} className="mb-4">
-            <h3 className="text-lg font-semibold">{recipe.title}</h3>
+        recipes.map((recipe) => (
+          <div
+            key={recipe.id}
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              marginBottom: '10px',
+            }}
+          >
+            <h3>
+              <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+            </h3>
             <p>{recipe.description}</p>
+            <button
+              onClick={() =>
+                isFavorite(recipe.id)
+                  ? removeFavorite(recipe.id)
+                  : addFavorite(recipe.id)
+              }
+              style={{
+                marginTop: '10px',
+                backgroundColor: isFavorite(recipe.id) ? '#f8d7da' : '#d4edda',
+                border: 'none',
+                padding: '5px 10px',
+                cursor: 'pointer',
+              }}
+            >
+              {isFavorite(recipe.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+            </button>
           </div>
         ))
       )}
@@ -26,4 +51,4 @@ const RecommendationsList = () => {
   );
 };
 
-export default RecommendationsList;
+export default RecipeList;
