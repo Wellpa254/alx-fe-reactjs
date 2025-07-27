@@ -14,6 +14,7 @@ const RecipeDetails = () => {
   return (
     <div>
       <h2>{recipe.title}</h2>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* 👈 Add this line */}
       <p>{recipe.description}</p>
       <EditRecipeForm recipe={recipe} />
       <DeleteRecipeButton id={id} />
