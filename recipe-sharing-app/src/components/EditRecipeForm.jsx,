@@ -1,0 +1,5 @@
+const handleSubmit = (event) => {
+  event.preventDefault();
+  updateRecipe({ ...recipe, title, description });
+  alert('Recipe updated!');
+};
