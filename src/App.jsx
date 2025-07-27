@@ -1,3 +1,4 @@
+ HEAD
 import UserProfile from './components/UserProfile';
 import WelcomeMessage from './components/WelcomeMessage';
 import Header from './components/Header';
@@ -47,6 +48,19 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
+
+import './App.css';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>🍲 Recipe Sharing App</h1>
+      <AddRecipeForm />
+      <RecipeList />
+    </div>
+ f028194 (Initialize recipe sharing app with Zustand state management)
   );
 }
 
