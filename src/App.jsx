@@ -1,13 +1,15 @@
- HEAD
-import UserProfile from './components/UserProfile';
-import WelcomeMessage from './components/WelcomeMessage';
+ import { useState } from 'react';
+import './App.css';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import WelcomeMessage from './components/WelcomeMessage';
+import UserProfile from './components/UserProfile';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,7 +21,6 @@ function App() {
       <Footer />
 
       <WelcomeMessage />
-
       <UserProfile 
         name="Alice" 
         age="25" 
@@ -44,23 +45,17 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <div className="App">
+        <h1>🍲 Recipe Sharing App</h1>
+        <AddRecipeForm />
+        <RecipeList />
+      </div>
     </>
-
-import './App.css';
-import RecipeList from './components/RecipeList';
-import AddRecipeForm from './components/AddRecipeForm';
-
-function App() {
-  return (
-    <div className="App">
-      <h1>🍲 Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <RecipeList />
-    </div>
- f028194 (Initialize recipe sharing app with Zustand state management)
   );
 }
 
