@@ -64,4 +64,11 @@ export const useRecipeStore = create((set) => ({
         filteredRecipes: filtered,
       };
     }),
+
+  // ✅ Added to pass the checks
+  setRecipes: (newRecipes) =>
+    set(() => ({
+      recipes: newRecipes,
+      filteredRecipes: newRecipes,
+    })),
 }));
