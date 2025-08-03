@@ -10,7 +10,7 @@ export const fetchUserData = async (username, location = '', minRepos = 0) => {
     if (minRepos > 0) query += ` repos:>=${minRepos}`;
 
     const response = await axios.get(`${BASE_URL}=${encodeURIComponent(query)}`);
-    return response.data.items;
+    return response.data; // ✅ Return full response
   } catch (error) {
     throw new Error('Failed to fetch user data');
   }
