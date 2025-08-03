@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SearchForm from './components/SearchForm';
 import UserCard from './components/UserCard';
-import { fetchGitHubUser } from './services/githubApi';
+import { fetchUserData } from './services/githubService';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -10,7 +10,7 @@ function App() {
   const handleSearch = async (username) => {
     try {
       setError('');
-      const userData = await fetchGitHubUser(username);
+      const userData = await fetchUserData(username);
       setUser(userData);
     } catch (err) {
       setUser(null);
@@ -19,13 +19,4 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>GitHub User Search</h1>
-      <SearchForm onSearch={handleSearch} />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {user && <UserCard user={user} />}
-    </div>
-  );
-}
-
-export default App;
+    <div style={{ padding: '2rem', fontFamily: 'sans-
