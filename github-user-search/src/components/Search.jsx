@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { fetchUserData } from '../services/githubService';
+import { fetchAdvancedUsers } from '../services/githubService';
 
 function Search() {
   const [username, setUsername] = useState('');
-  const [user, setUser] = useState(null);
+  const [location, setLocation] = useState('');
+  const [minRepo, setMinRepo] = useState('');
+  const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,54 +16,69 @@ function Search() {
     try {
       setIsLoading(true);
       setError('');
-      const data = await fetchUserData(username.trim());
-      setUser(data);
+      const data = await fetchAdvancedUsers(username, location, minRepo);
+      setUsers(data.items || []);
     } catch (err) {
-      setUser(null);
-      setError('Looks like we cant find the user');
+      setUsers([]);
+      setError('Failed to fetch users.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+    <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-xl mx-auto">
         <input
           type="text"
-          placeholder="Enter GitHub username"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="p-2 border rounded"
           required
-          style={{
-            padding: '0.5rem',
-            fontSize: '1rem',
-            width: '250px',
-            marginRight: '0.5rem',
-          }}
         />
-        <button type="submit" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
+        <input
+          type="text"
+          placeholder="Location (optional)"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="p-2 border rounded"
+        />
+        <input
+          type="number"
+          placeholder="Minimum Repositories (optional)"
+          value={minRepo}
+          onChange={(e) => setMinRepo(e.target.value)}
+          className="p-2 border rounded"
+        />
+        <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
           Search
         </button>
       </form>
 
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className="text-center">Loading...</p>}
+      {error && <p className="text-center text-red-600">{error}</p>}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {user && (
-        <div style={{ marginTop: '2rem', border: '1px solid #ddd', padding: '1rem', borderRadius: '8px' }}>
-          <img
-            src={user.avatar_url}
-            alt={user.login}
-            width="100"
-            style={{ borderRadius: '50%' }}
-          />
-          <h2>{user.name || user.login}</h2>
-          <p>{user.bio || 'No bio available'}</p>
-          <a href={user.html_url} target="_blank" rel="noreferrer">
-            View GitHub Profile
-          </a>
+      {users.length > 0 && (
+        <div className="grid gap-4 mt-6">
+          {users.map((user) => (
+            <div key={user.id} className="p-4 border rounded shadow">
+              <div className="flex items-center gap-4">
+                <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
+                <div>
+                  <h2 className="font-bold text-lg">{user.login}</h2>
+                  <a
+                    href={user.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500 underline"
+                  >
+                    View Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
