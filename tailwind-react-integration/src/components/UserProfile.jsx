@@ -6,13 +6,13 @@ export default function UserProfile() {
       <img
         src="https://via.placeholder.com/150"
         alt="User"
-        className="w-36 h-36 rounded-full object-cover border-4 border-gray-200 mx-auto"
+        className="w-36 h-36 rounded-full mx-auto"
       />
-      <h2 className="mt-3 text-xl font-semibold text-gray-900">
-        Muthama Wat
-      </h2>
-      <p className="text-gray-500 text-sm mt-1">
-        Web Developer
+      <h1 className="text-blue-800 my-4 text-xl font-bold">
+        John Doe
+      </h1>
+      <p className="text-gray-600 text-base">
+        Developer at Example Co. Loves to write code and explore new technologies.
       </p>
     </div>
   );
