@@ -31,11 +31,8 @@ function AddRecipeForm() {
         ingredients: ingredients.split(",").map((i) => i.trim()),
         instructions: steps.split("\n").map((s) => s.trim()),
       };
-
       console.log("New recipe submitted:", newRecipe);
       alert("Recipe submitted successfully!");
-
-      // Reset form
       setTitle("");
       setIngredients("");
       setSteps("");
@@ -45,12 +42,12 @@ function AddRecipeForm() {
 
   return (
     <div className="container mx-auto p-4 md:p-6 max-w-full md:max-w-2xl">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-indigo-700">
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-indigo-700">
         Add a New Recipe
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-4 md:p-6 rounded-2xl shadow-lg space-y-6"
+        className="bg-white p-4 md:p-6 rounded-2xl shadow-lg space-y-6 md:space-y-8"
       >
         {/* Title */}
         <div>
@@ -65,7 +62,7 @@ function AddRecipeForm() {
             placeholder="Enter recipe title"
           />
           {errors.title && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.title}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1">{errors.title}</p>
           )}
         </div>
 
@@ -82,7 +79,7 @@ function AddRecipeForm() {
             placeholder="e.g. Tomato, Onion, Garlic"
           />
           {errors.ingredients && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.ingredients}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1">{errors.ingredients}</p>
           )}
         </div>
 
@@ -99,7 +96,7 @@ function AddRecipeForm() {
             placeholder="Step 1: ...&#10;Step 2: ..."
           />
           {errors.steps && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.steps}</p>
+            <p className="text-red-500 text-sm md:text-base mt-1">{errors.steps}</p>
           )}
         </div>
 
