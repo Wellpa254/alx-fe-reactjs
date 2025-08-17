@@ -31,10 +31,8 @@ function AddRecipeForm() {
         ingredients: ingredients.split(",").map((i) => i.trim()),
         instructions: steps.split("\n").map((s) => s.trim()),
       };
-
       console.log("New recipe submitted:", newRecipe);
       alert("Recipe submitted successfully!");
-
       setTitle("");
       setIngredients("");
       setSteps("");
@@ -51,7 +49,6 @@ function AddRecipeForm() {
         onSubmit={handleSubmit}
         className="bg-white p-4 md:p-6 rounded-2xl shadow-lg space-y-6"
       >
-        {/* Title */}
         <div>
           <label className="block text-gray-700 font-medium mb-2 md:text-lg">
             Recipe Title
@@ -63,12 +60,9 @@ function AddRecipeForm() {
             className="w-full border border-gray-300 rounded-lg p-3 md:p-4 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
             placeholder="Enter recipe title"
           />
-          {errors.title && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.title}</p>
-          )}
+          {errors.title && <p className="text-red-500 text-sm mt-1 md:text-base">{errors.title}</p>}
         </div>
 
-        {/* Ingredients */}
         <div>
           <label className="block text-gray-700 font-medium mb-2 md:text-lg">
             Ingredients (separated by commas)
@@ -80,12 +74,9 @@ function AddRecipeForm() {
             rows="4"
             placeholder="e.g. Tomato, Onion, Garlic"
           />
-          {errors.ingredients && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.ingredients}</p>
-          )}
+          {errors.ingredients && <p className="text-red-500 text-sm mt-1 md:text-base">{errors.ingredients}</p>}
         </div>
 
-        {/* Steps */}
         <div>
           <label className="block text-gray-700 font-medium mb-2 md:text-lg">
             Preparation Steps (one per line)
@@ -97,12 +88,9 @@ function AddRecipeForm() {
             rows="5"
             placeholder="Step 1: ...&#10;Step 2: ..."
           />
-          {errors.steps && (
-            <p className="text-red-500 text-sm mt-1 md:text-base">{errors.steps}</p>
-          )}
+          {errors.steps && <p className="text-red-500 text-sm mt-1 md:text-base">{errors.steps}</p>}
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 md:py-4 px-4 md:px-6 rounded-lg transition duration-200"
