@@ -1,22 +1,15 @@
-// src/App.jsx
-import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import RecipeList from "./components/RecipeList";
-import RecipeDetails from "./components/RecipeDetails";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <Header />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<RecipeList />} />
-          <Route path="/recipe/:id" element={<RecipeDetails />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
