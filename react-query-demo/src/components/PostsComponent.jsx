@@ -13,6 +13,7 @@ export default function PostsComponent() {
     isError,
     error,
     isFetching,
+    refetch, // 👈 added for manual refetch
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
@@ -28,6 +29,23 @@ export default function PostsComponent() {
   return (
     <div>
       <h2>Posts</h2>
+
+      {/* 👇 Manual refetch button */}
+      <button
+        onClick={() => refetch()}
+        style={{
+          marginBottom: "10px",
+          padding: "8px 12px",
+          backgroundColor: "#2563eb",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+        }}
+      >
+        Refetch Posts
+      </button>
+
       {isFetching && <p>Background Updating...</p>}
       <ul>
         {data.map((post) => (
@@ -39,4 +57,3 @@ export default function PostsComponent() {
     </div>
   );
 }
-
