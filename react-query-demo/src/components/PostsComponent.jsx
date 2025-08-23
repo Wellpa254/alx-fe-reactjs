@@ -17,6 +17,7 @@ export default function PostsComponent() {
     queryKey: ["posts"],
     queryFn: fetchPosts,
     cacheTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 1, // data stays fresh for 1 min
     refetchOnWindowFocus: false, // don't refetch when user switches tab
     keepPreviousData: true, // useful when paginating
   });
@@ -38,3 +39,4 @@ export default function PostsComponent() {
     </div>
   );
 }
+
