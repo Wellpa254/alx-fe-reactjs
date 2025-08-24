@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import BlogPost from "./pages/BlogPost";
-import Login from "./pages/Login";
+import Home from "./components/pages/Home";
+import Profile from "./components/pages/Profile";
+import BlogPost from "./components/pages/BlogPost";
+import Login from "./components/pages/Login";
 
 // Protected Route Wrapper
 function ProtectedRoute({ children }) {
