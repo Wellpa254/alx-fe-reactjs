@@ -1,27 +1,27 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Profile from "./pages/Profile";
-import BlogPost from "./pages/BlogPost"; // dynamic
+import BlogPost from "./pages/BlogPost";
 import Login from "./pages/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+
+// Protected Route Wrapper
+function ProtectedRoute({ children }) {
+  const isAuthenticated = false; // simulate login
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
 
 export default function App() {
   return (
-    <div>
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/profile">Profile</Link> |{" "}
-        <Link to="/blog/1">Blog #1</Link> |{" "}
-        <Link to="/login">Login</Link>
-      </nav>
-
+    <BrowserRouter>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
 
-        {/* ✅ Protected Nested Routes */}
+        {/* Dynamic Route */}
+        <Route path="/blog/:id" element={<BlogPost />} />
+
+        {/* Protected + Nested Routes */}
         <Route
           path="/profile/*"
           element={
@@ -30,12 +30,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* ✅ Dynamic route */}
-        <Route path="/blog/:id" element={<BlogPost />} />
-
-        <Route path="/login" element={<Login />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
