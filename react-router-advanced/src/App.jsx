@@ -3,6 +3,7 @@ import Home from "./components/pages/Home";
 import Profile from "./components/Profile";
 import BlogPost from "./components/pages/BlogPost";
 import Login from "./components/pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Protected Route Wrapper
 function ProtectedRoute({ children }) {
